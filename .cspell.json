@@ -1,0 +1,21 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "Avenir",
+    "codemirror",
+    "codepaths",
+    "keymap",
+    "tsbuildinfo",
+    "Vite"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    "dist",
+    ".*",
+    "yarn.lock",
+    "package-lock.json",
+    "pnpm-lock.yaml"
+  ],
+  "flagWords": []
+}
