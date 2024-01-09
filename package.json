@@ -19,6 +19,7 @@
     "@codemirror/state": "^6.4.0",
     "@codemirror/view": "^6.23.0",
     "codemirror": "^6.0.1",
+    "mdui": "^2.0.3",
     "vue": "^3.4.5",
     "ws": "^8.16.0"
   },

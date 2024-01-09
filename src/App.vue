@@ -3,7 +3,9 @@ import CodeMirror from './components/CodeMirror.vue'
 </script>
 
 <template>
-  <CodeMirror />
+  <mdui-layout>
+    <CodeMirror />
+  </mdui-layout>
 </template>
 
 <style scoped></style>

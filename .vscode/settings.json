@@ -1,0 +1,5 @@
+{
+  "files.autoSave": "onFocusChange",
+  "html.customData": ["./node_modules/mdui/html-data.zh-cn.json"],
+  "css.customData": ["./node_modules/mdui/css-data.zh-cn.json"]
+}
