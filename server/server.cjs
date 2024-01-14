@@ -15,7 +15,7 @@ const WebSocket = require('ws')
 
 const wss = new WebSocket.Server({ port: 8080 })
 
-console.log('Server started on port 8080!')
+console.log('Server started on http://localhost:8080 !')
 
 wss.on('connection', (ws) => {
   ws.send('Hello Client!')
@@ -29,8 +29,9 @@ wss.on('connection', (ws) => {
         runCode(filePath, msg.interpreter).then((res) => {
           console.log(res)
           ws.send(JSON.stringify(res))
+        }).then(() => {
+          fsPy.rmPyScript(filePath)
         })
-        // fsPy.rmPyScript(filePath)
       }
     } catch (e) {
       // console.log(e)

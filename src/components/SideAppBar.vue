@@ -11,7 +11,21 @@
 //   console.log(editorViewRef)
 // }
 
-import runCode from '../scripts/runCode';
+import { ref, watch } from 'vue'
+
+import { type Interpreter } from '../types/message';
+import runCode from '../scripts/runCode'
+
+const interpreterRef = ref('python')
+let interpreter: Interpreter = interpreterRef.value as unknown as Interpreter
+
+const updateInterpreter = (eve: Event) => {
+  interpreterRef.value = (eve.target as HTMLSelectElement).value
+}
+
+watch(interpreterRef, (newValue) => {
+  interpreter = (newValue ? newValue : 'python') as unknown as Interpreter
+})
 </script>
 
 <template>
@@ -19,12 +33,12 @@ import runCode from '../scripts/runCode';
 
     <br />
 
-    <mdui-button class="runCodeButton" variant="elevated" @click="runCode">Run</mdui-button>
+    <mdui-button class="runCodeButton" variant="elevated" @click="runCode(interpreter)">Run</mdui-button>
 
     <br />
 
-    <mdui-select value="python3" label="Interpreter" class="selectInterpreter">
-      <mdui-menu-item value="python3">Python3</mdui-menu-item>
+    <mdui-select :value="interpreter" label="Interpreter" class="selectInterpreter" @change="updateInterpreter">
+      <mdui-menu-item value="python">Python3</mdui-menu-item>
       <mdui-menu-item value="pypy">PyPy</mdui-menu-item>
     </mdui-select>
   </div>
