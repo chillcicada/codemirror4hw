@@ -1,5 +1,21 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser",
-  "Plugins": ["@typescript-eslint", "prettier", "only-warn"]
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:vue/vue3-essential"],
+  "overrides": [],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
+    "project": "tsconfig.json",
+    "extraFileExtensions": [".vue"]
+  },
+  "plugins": ["@typescript-eslint", "vue"],
+  "rules": {
+    "semi": "off"
+  }
 }

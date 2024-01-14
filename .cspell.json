@@ -6,6 +6,8 @@
     "codemirror",
     "codepaths",
     "keymap",
+    "pypy",
+    "scroller",
     "tsbuildinfo",
     "Vite"
   ],

@@ -1,56 +1,40 @@
-<script lang="ts">
-import { basicSetup } from 'codemirror'
-import { EditorView, keymap } from '@codemirror/view'
-import { EditorState, Compartment } from '@codemirror/state'
-import { defaultKeymap } from '@codemirror/commands'
-import { python } from '@codemirror/lang-python'
-// import { ref } from 'vue'
+<script lang="ts" setup>
+import { EditorView } from '@codemirror/view'
+import { EditorState } from '@codemirror/state';
+import editorStateConfig from '../scripts/initEditor'
 
-let language = new Compartment
-let tabSize = new Compartment
+import { onMounted, ref } from 'vue';
 
-let state = EditorState.create({
-  doc: 'print(hello, world!)',
-  extensions: [
-    keymap.of(defaultKeymap),
-    basicSetup,
-    language.of(python()),
-    tabSize.of(EditorState.tabSize.of(4))
-  ],
-})
+const editorRef = ref()
+const editorView = ref()
 
-let view = new EditorView({
-  state,
-  // parent: document.querySelector('#editor')!,
-  parent: document.body,
-})
+const initEditor = () => {
+  if (typeof editorView.value !== "undefined") {
+    editorView.value.destroyed()
+  }
 
-function setTabSize(view: EditorView, size: number) {
-  view.dispatch({
-    effects: tabSize.reconfigure(EditorState.tabSize.of(size)),
-  })
+  const editorState = EditorState.create(editorStateConfig)
+
+  if (editorRef.value) {
+    editorView.value = new EditorView({
+      state: editorState,
+      parent: editorRef.value
+    })
+  }
 }
 
-export default {
-  name: 'CodeMirror',
-  setup() {
-    return {
-      view,
-      setTabSize,
-    }
-  },
-}
+onMounted(() => {
+  initEditor()
+})
 </script>
 
 <template>
-  <!-- <div>
-    <textarea ref="editor" id="editor"></textarea>
-    <button @click="runCode">运行代码</button>
-    <div v-if="output">
-      <h3>输出结果:</h3>
-      <pre>{{ output }}</pre>
-    </div>
-  </div> -->
+  <div class="editor" ref="editorRef" id="editor"></div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.editor {
+  width: 100%;
+  height: 100%;
+}
+</style>

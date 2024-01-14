@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import eslint from 'vite-plugin-eslint'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,10 +8,10 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {
-          // @ts-ignore
           isCustomElement: (tag: string) => tag.startsWith('mdui-'),
         },
       },
     }),
+    eslint(),
   ],
 })
